@@ -916,13 +916,31 @@
         
         /* Countdown Section */
         .countdown-section {
-            background-color: #1a5276;
+            background-color: var(--primary-dark);
             color: white;
             padding: 50px 0;
+            position: relative;
+            overflow: hidden;
         }
         
         .countdown-section .section-heading {
             color: white;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .countdown-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: linear-gradient(to right, rgba(21, 67, 96, 0.9), rgba(41, 128, 185, 0.8)), url('assets/crete_beaches.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.8;
+            z-index: -1;
         }
         
         .countdown-container {
@@ -930,28 +948,42 @@
             justify-content: center;
             flex-wrap: wrap;
             gap: 20px;
+            z-index: 1;
         }
         
         .countdown-box {
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: rgba(255, 255, 255, 0.15);
             border-radius: 10px;
             padding: 20px;
             min-width: 120px;
             text-align: center;
             backdrop-filter: blur(5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .countdown-box:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
         }
         
         .countdown-value {
-            font-size: 3rem;
+            font-size: 3.5rem;
             font-weight: 700;
             margin-bottom: 10px;
-            font-family: 'Playfair Display', serif;
+            font-family: var(--font-heading);
+            color: white;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
         }
         
         .countdown-label {
             font-size: 1rem;
             text-transform: uppercase;
             letter-spacing: 2px;
+            color: rgba(255, 255, 255, 0.9);
+            font-family: var(--font-alt);
+            font-weight: 600;
         }
         
         /* Map Section */
