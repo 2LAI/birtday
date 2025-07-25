@@ -914,6 +914,39 @@
             border-color: var(--secondary);
         }
         
+        .pulse-animation {
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+            }
+            
+            70% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+            }
+            
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+            }
+        }
+        
+        .audio-notification {
+            background-color: rgba(255, 255, 255, 0.9);
+            color: var(--primary-dark);
+            padding: 8px 15px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+            font-weight: 600;
+            animation: fadeIn 0.5s forwards;
+            font-family: var(--font-alt);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+        
         /* Countdown Section */
         .countdown-section {
             background-color: var(--primary-dark);
@@ -1857,6 +1890,41 @@
             const audioPlayer = document.getElementById('bgMusic');
             const toggleAudioBtn = document.getElementById('toggleAudio');
             
+            // Attempt to autoplay music (may be blocked by browser)
+            const playPromise = audioPlayer.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    // Autoplay started successfully
+                    toggleAudioBtn.textContent = 'Pause Music';
+                    toggleAudioBtn.classList.add('playing');
+                    toggleAudioBtn.classList.add('pulse-animation');
+                    
+                    // Remove the pulse animation after a few seconds
+                    setTimeout(() => {
+                        toggleAudioBtn.classList.remove('pulse-animation');
+                    }, 5000);
+                }).catch(error => {
+                    // Autoplay was prevented
+                    // We'll show a pulsing play button to encourage user to click
+                    toggleAudioBtn.classList.add('pulse-animation');
+                    
+                    // Add a notification to encourage user to play music
+                    const notification = document.createElement('div');
+                    notification.className = 'audio-notification';
+                    notification.textContent = '🎵 Click to play music';
+                    toggleAudioBtn.parentNode.insertBefore(notification, toggleAudioBtn);
+                    
+                    // Remove notification after user interaction with the page
+                    document.body.addEventListener('click', function removeNotification() {
+                        if (notification.parentNode) {
+                            notification.parentNode.removeChild(notification);
+                        }
+                        document.body.removeEventListener('click', removeNotification);
+                    }, { once: true });
+                });
+            }
+            
             toggleAudioBtn.addEventListener('click', function() {
                 if (audioPlayer.paused) {
                     audioPlayer.play();
@@ -1866,6 +1934,15 @@
                     audioPlayer.pause();
                     toggleAudioBtn.textContent = 'Play Music';
                     toggleAudioBtn.classList.remove('playing');
+                }
+                
+                // Remove the pulse animation when the user interacts with the button
+                toggleAudioBtn.classList.remove('pulse-animation');
+                
+                // Remove any notification
+                const notification = document.querySelector('.audio-notification');
+                if (notification) {
+                    notification.parentNode.removeChild(notification);
                 }
             });
             
