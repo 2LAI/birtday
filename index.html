@@ -958,14 +958,27 @@
         
         .countdown-section .section-heading {
             color: white;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
             text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
-            font-size: 3.5rem;
+            font-size: 3.8rem;
             font-weight: 700;
             position: relative;
             z-index: 2;
+            letter-spacing: 2px;
         }
-
+        
+        .countdown-section .section-heading::after {
+            content: "";
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 3px;
+            background: linear-gradient(to right, #3498db, #8ed8f8);
+            border-radius: 3px;
+        }
+        
         .countdown-section::before {
             content: '';
             position: absolute;
@@ -973,9 +986,10 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(to right, rgba(10, 30, 50, 0.95), rgba(20, 60, 90, 0.9)), url('assets/crete_beaches.jpg');
+            background: linear-gradient(135deg, #1a5276 0%, #0a3d62 50%, #0c2461 100%), url('assets/crete_lazurn_whater.jpg');
             background-size: cover;
             background-position: center;
+            background-blend-mode: overlay;
             opacity: 0.95;
             z-index: 0;
         }
@@ -990,15 +1004,26 @@
         }
         
         .countdown-box {
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: #0f4c81; /* Deep Mediterranean blue */
             border-radius: 10px;
             padding: 30px;
             min-width: 150px;
             text-align: center;
-            backdrop-filter: blur(5px);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.2);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .countdown-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, #1a5276, #3498db);
         }
         
         .countdown-box:hover {
@@ -1009,10 +1034,10 @@
         .countdown-value {
             font-size: 4rem;
             font-weight: 700;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             font-family: var(--font-heading);
             color: white;
-            text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.5);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
             display: block;
         }
         
@@ -1020,10 +1045,9 @@
             font-size: 1.2rem;
             text-transform: uppercase;
             letter-spacing: 2px;
-            color: var(--secondary);
+            color: #8ed8f8; /* Light blue for Greek theme */
             font-family: var(--font-alt);
             font-weight: 600;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
         }
         
         /* Map Section */
