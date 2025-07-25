@@ -33,6 +33,9 @@ A beautiful landing page for a birthday surprise trip to Crete, based on the pro
 - [x] Add parallax effects to hero and background sections
 - [x] Improve typography with elegant font combinations
 - [x] Add back-to-top button for better navigation
+- [x] Add decorative floating background elements with Crete images
+- [x] Add subtle texture overlay for visual depth
+- [x] Implement wave-shaped dividers between sections
 - [x] Deploy to GitHub Pages
 
 ## In Progress Tasks
@@ -59,6 +62,9 @@ The landing page has been enhanced with modern design elements:
 - **Decorative Elements**: Added subtle decorative elements like gradient accents and quote marks
 - **Consistent Styling**: Unified styling across all components with consistent shadows, borders, and transitions
 - **Back-to-top Button**: Added a convenient navigation button
+- **Background Decorations**: Added floating Crete images as background elements
+- **Texture Overlay**: Added a subtle grainy texture for visual richness
+- **Wave Dividers**: Added wave-shaped dividers between sections
 
 ## Implementation Plan
 
@@ -71,6 +77,7 @@ The landing page is built as a single HTML file with embedded CSS styles. It fea
 - Automatic photo slideshow
 - Personalized message section
 - Virtual packing list with progress tracking
+- Decorative background elements
 
 All data (notes and packing list items) is saved to localStorage for persistence between visits.
 
