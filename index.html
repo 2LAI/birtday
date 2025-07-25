@@ -1,0 +1,1764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, My Love!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏝️</text></svg>">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: #333;
+            line-height: 1.6;
+            background-color: #f9f7f3;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('assets/create_city_night.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            padding: 40px;
+            background-color: rgba(0,0,0,0.5);
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 30px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            font-style: italic;
+            margin-bottom: 30px;
+        }
+        
+        /* Sections */
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-heading {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            color: #1a5276;
+        }
+        
+        /* Journey Section */
+        .journey {
+            background-color: white;
+        }
+        
+        .journey-box {
+            display: flex;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+        
+        .journey-image {
+            flex: 1;
+            max-width: 50%;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .journey-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .journey-content {
+            flex: 1;
+            padding: 0 30px;
+        }
+        
+        .journey-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #1a5276;
+        }
+        
+        /* Itinerary Section */
+        .itinerary {
+            background-color: #f0f8ff;
+        }
+        
+        .notes-description {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+        }
+        
+        .notes-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .notes-list {
+            margin-bottom: 30px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .note-item {
+            background-color: #f9f7f3;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            position: relative;
+            animation: fadeIn 0.5s ease-out;
+            border-left: 4px solid #1a5276;
+        }
+        
+        .note-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .note-text {
+            margin-right: 30px;
+            word-wrap: break-word;
+        }
+        
+        .note-date {
+            font-size: 0.8rem;
+            color: #888;
+            margin-top: 10px;
+        }
+        
+        .delete-note {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: #ff6347;
+            cursor: pointer;
+            font-size: 1.2rem;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
+        
+        .delete-note:hover {
+            opacity: 1;
+        }
+        
+        .add-note-form {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        #noteInput {
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            min-height: 120px;
+            margin-bottom: 15px;
+            resize: vertical;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+        }
+        
+        #addNoteBtn {
+            padding: 12px 20px;
+            background-color: #1a5276;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            align-self: flex-end;
+        }
+        
+        #addNoteBtn:hover {
+            background-color: #154360;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(26,82,118,0.3);
+        }
+        
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        thead {
+            background-color: #1a5276;
+            color: white;
+        }
+        
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            font-weight: 600;
+        }
+        
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+        
+        /* Gallery Section */
+        .gallery-section {
+            background-color: white;
+        }
+        
+        /* Slideshow Styles */
+        .slideshow-container {
+            max-width: 1000px;
+            position: relative;
+            margin: 0 auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .slideshow-slides {
+            position: relative;
+            height: 600px;
+        }
+        
+        .slide {
+            display: none;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            animation: fadeEffect 1.5s;
+        }
+        
+        .slide.active {
+            display: block;
+        }
+        
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .slide-caption {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background-color: rgba(0,0,0,0.7);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 1.1rem;
+            font-style: italic;
+        }
+        
+        /* Next & previous buttons */
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: auto;
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            background-color: rgba(0,0,0,0.4);
+            text-decoration: none;
+        }
+        
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+        
+        .prev:hover, .next:hover {
+            background-color: rgba(0,0,0,0.8);
+        }
+        
+        /* The dots/bullets/indicators */
+        .slideshow-dots {
+            text-align: center;
+            position: absolute;
+            bottom: 70px;
+            width: 100%;
+        }
+        
+        .dot {
+            cursor: pointer;
+            height: 12px;
+            width: 12px;
+            margin: 0 5px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+        
+        .active-dot, .dot:hover {
+            background-color: #fff;
+        }
+        
+        /* Fading animation */
+        @keyframes fadeEffect {
+            from {opacity: .4} 
+            to {opacity: 1}
+        }
+        
+        /* Responsive slideshow */
+        @media (max-width: 768px) {
+            .slideshow-slides {
+                height: 400px;
+            }
+            
+            .slide-caption {
+                padding: 10px;
+                font-size: 0.9rem;
+            }
+            
+            .prev, .next {
+                padding: 10px;
+                font-size: 16px;
+            }
+            
+            .dot {
+                height: 10px;
+                width: 10px;
+            }
+            
+            .slideshow-dots {
+                bottom: 50px;
+            }
+        }
+        
+        /* Gallery (Old) */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-gap: 20px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            height: 250px;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* Gift Section */
+        .gift {
+            background-color: #f9f7f3;
+            text-align: center;
+        }
+        
+        .gift-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .gift h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #1a5276;
+        }
+        
+        #sendGift {
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 8px;
+            background: #ff7f50;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        #sendGift:hover {
+            background: #ff6347;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255,127,80,0.4);
+        }
+        
+        #sendGift:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        #giftStatus {
+            font-weight: bold;
+            margin-top: 1rem;
+            color: #2ecc71;
+            min-height: 24px;
+        }
+        
+        /* Footer */
+        footer {
+            padding: 30px 0;
+            background-color: #1a5276;
+            color: white;
+            text-align: center;
+        }
+        
+        footer p {
+            margin-bottom: 0;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.5rem;
+            }
+            
+            .section-heading {
+                font-size: 2rem;
+            }
+            
+            .journey-box {
+                flex-direction: column;
+            }
+            
+            .journey-image {
+                max-width: 100%;
+                margin-bottom: 30px;
+            }
+            
+            table {
+                font-size: 0.9rem;
+            }
+            
+            th, td {
+                padding: 10px;
+            }
+        }
+
+        .divider {
+            width: 80%;
+            margin: 20px auto;
+            height: 1px;
+            background: linear-gradient(to right, transparent, #1a5276, transparent);
+        }
+
+        .wife-portrait {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            margin: 0 auto 20px;
+            display: block;
+        }
+        
+        /* Audio Player */
+        .audio-player {
+            margin-top: 30px;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .audio-player p {
+            margin-bottom: 10px;
+            font-size: 1rem;
+            color: white;
+            font-weight: 500;
+        }
+        
+        .audio-player audio {
+            width: 100%;
+            margin-bottom: 10px;
+            border-radius: 30px;
+        }
+        
+        .audio-toggle {
+            background-color: rgba(255, 255, 255, 0.3);
+            border: 2px solid white;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            margin-top: 8px;
+        }
+        
+        .audio-toggle:hover {
+            background-color: white;
+            color: #1a5276;
+        }
+        
+        .audio-toggle.playing {
+            background-color: #ff7f50;
+            border-color: #ff7f50;
+        }
+        
+        /* Countdown Section */
+        .countdown-section {
+            background-color: #1a5276;
+            color: white;
+            padding: 50px 0;
+        }
+        
+        .countdown-section .section-heading {
+            color: white;
+        }
+        
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .countdown-box {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            min-width: 120px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+        }
+        
+        .countdown-value {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .countdown-label {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        /* Map Section */
+        .map-section {
+            background-color: #f9f7f3;
+            padding: 80px 0;
+        }
+        
+        .map-description {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+        }
+        
+        .map-container {
+            margin: 0 auto;
+            max-width: 1000px;
+        }
+        
+        /* Tabs for Map Section */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            gap: 15px;
+        }
+        
+        .tab-btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 30px;
+            background-color: #f0f8ff;
+            color: #1a5276;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .tab-btn:hover {
+            background-color: #e0f0ff;
+        }
+        
+        .tab-btn.active {
+            background-color: #1a5276;
+            color: white;
+            box-shadow: 0 5px 15px rgba(26, 82, 118, 0.3);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        /* Location Cards */
+        .location-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .location-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .location-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .location-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: #1a5276;
+            margin-bottom: 10px;
+        }
+        
+        .location-card p {
+            font-size: 1rem;
+            color: #666;
+        }
+        
+        /* Responsive location cards */
+        @media (max-width: 768px) {
+            .location-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .tabs {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+            
+            .tab-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+        
+        /* Message Section */
+        .message-section {
+            background-color: #f9f7f3;
+            background-image: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url('assets/crete_lndscape.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            padding: 80px 0;
+        }
+        
+        .message-card {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .message-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: linear-gradient(to bottom, #1a5276, #3498db);
+        }
+        
+        .message-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: #1a5276;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .message-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .message-content p {
+            margin-bottom: 20px;
+        }
+        
+        .message-signature {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            text-align: right;
+            margin-top: 30px;
+            font-size: 1.2rem;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .hero-content, .journey-box, .gallery-item, .gift-container {
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .journey-box:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+        
+        .journey-box:nth-child(5) {
+            animation-delay: 0.6s;
+        }
+        
+        .gallery-item:nth-child(1) { animation-delay: 0.1s; }
+        .gallery-item:nth-child(2) { animation-delay: 0.2s; }
+        .gallery-item:nth-child(3) { animation-delay: 0.3s; }
+        .gallery-item:nth-child(4) { animation-delay: 0.4s; }
+        .gallery-item:nth-child(5) { animation-delay: 0.5s; }
+        .gallery-item:nth-child(6) { animation-delay: 0.6s; }
+        
+        .countdown-box {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .countdown-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        /* Packing List Section */
+        .packing-list-section {
+            background-color: #f9f7f3;
+            padding: 80px 0;
+        }
+        
+        .packing-description {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+        }
+        
+        .packing-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .packing-input-group {
+            display: flex;
+            margin-bottom: 30px;
+            gap: 10px;
+        }
+        
+        .packing-input-group input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        
+        .packing-input-group select {
+            width: 150px;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: white;
+            font-size: 1rem;
+        }
+        
+        .packing-input-group button {
+            padding: 12px 20px;
+            background-color: #1a5276;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .packing-input-group button:hover {
+            background-color: #154360;
+            transform: translateY(-2px);
+        }
+        
+        .packing-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .packing-category h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: #1a5276;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 8px;
+        }
+        
+        .packing-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .packing-list li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .packing-list li input[type="checkbox"] {
+            margin-right: 10px;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        
+        .packing-list li label {
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+        }
+        
+        .packing-list li input[type="checkbox"]:checked + label {
+            text-decoration: line-through;
+            color: #888;
+        }
+        
+        .packing-progress {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .packing-progress h4 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: #1a5276;
+        }
+        
+        .progress-bar-container {
+            height: 15px;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background-color: #27ae60;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        #packingProgressText {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        @media (max-width: 768px) {
+            .packing-input-group {
+                flex-direction: column;
+            }
+            
+            .packing-categories {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <img src="assets/wife-portrait.jpg" alt="Portrait of my love" class="wife-portrait">
+            <h1>🎉 Happy Birthday, My Love!</h1>
+            <h2>A Surprise Escape to Magical Crete 🇬🇷</h2>
+            <p>Pack your sunglasses and sense of adventure—this ticket is our passport to turquoise waters, ancient myths, and sunsets made for two.</p>
+            <div class="audio-player">
+                <p>🎵 Our Travel Soundtrack</p>
+                <audio id="bgMusic" controls loop>
+                    <source src="song/Clams Casino.m4a" type="audio/mp4">
+                    Your browser does not support the audio element.
+                </audio>
+                <button id="toggleAudio" class="audio-toggle">Autoplay Music</button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Countdown Section -->
+    <section class="countdown-section">
+        <div class="container">
+            <h2 class="section-heading">Countdown to Paradise</h2>
+            <div class="countdown-container">
+                <div class="countdown-box">
+                    <div id="days" class="countdown-value">00</div>
+                    <div class="countdown-label">Days</div>
+                </div>
+                <div class="countdown-box">
+                    <div id="hours" class="countdown-value">00</div>
+                    <div class="countdown-label">Hours</div>
+                </div>
+                <div class="countdown-box">
+                    <div id="minutes" class="countdown-value">00</div>
+                    <div class="countdown-label">Minutes</div>
+                </div>
+                <div class="countdown-box">
+                    <div id="seconds" class="countdown-value">00</div>
+                    <div class="countdown-label">Seconds</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Journey Section -->
+    <section class="journey">
+        <div class="container">
+            <h2 class="section-heading">✈️ Our Journey Begins</h2>
+            <div class="journey-box">
+                <div class="journey-image">
+                    <img src="assets/flight-waw-her-illustration.jpg" alt="Flight from Warsaw to Crete">
+                </div>
+                <div class="journey-content">
+                    <h3>Departure: Warsaw ✈️ Chania, Crete</h3>
+                    <p>Get ready for an unforgettable journey from our home in Warsaw to the beautiful island of Crete. The adventure of a lifetime awaits us!</p>
+                </div>
+            </div>
+            
+            <div class="divider"></div>
+            
+            <h2 class="section-heading">🏡 Home with a View</h2>
+            <div class="journey-box">
+                <div class="journey-content">
+                    <h3>Stay: Cliff‑side apartment overlooking the Aegean Sea</h3>
+                    <p>We'll be staying in a beautiful apartment with breathtaking views of the Aegean Sea. Wake up to the sound of waves and enjoy your morning coffee with a panoramic view of the endless blue.</p>
+                </div>
+                <div class="journey-image">
+                    <img src="assets/crete_pool.jpg" alt="Apartment balcony with sea view">
+                </div>
+            </div>
+            
+            <div class="divider"></div>
+            
+            <h2 class="section-heading">🍽️ Candle‑Lit Cuisine</h2>
+            <div class="journey-box">
+                <div class="journey-image">
+                    <img src="assets/crete_tavern.jpg" alt="Candle‑lit dinner for two">
+                </div>
+                <div class="journey-content">
+                    <h3>Private chef, Cretan wine, and starlit terrace</h3>
+                    <p>Experience the authentic flavors of Crete with a private chef preparing traditional dishes just for us. We'll enjoy local wines under the stars on our private terrace.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Itinerary Section -->
+    <section class="itinerary">
+        <div class="container">
+            <h2 class="section-heading">✏️ Our Plans Together</h2>
+            <p class="notes-description">Add your own ideas and plans for our adventure!</p>
+            
+            <div class="notes-container">
+                <div class="notes-list" id="notesList">
+                    <!-- Notes will be added here dynamically -->
+                </div>
+                
+                <div class="add-note-form">
+                    <textarea id="noteInput" placeholder="Write your ideas here..."></textarea>
+                    <button id="addNoteBtn">Add Note</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Gallery Section -->
+    <section class="gallery-section">
+        <div class="container">
+            <h2 class="section-heading">📸 Memories in the Making</h2>
+            
+            <div class="slideshow-container">
+                <div class="slideshow-slides">
+                    <div class="slide fade">
+                        <img src="assets/crete-girl-scaled-1024x682.webp" alt="Birthday girl on the beach">
+                        <div class="slide-caption">You on the beautiful beaches of Crete</div>
+                    </div>
+                    
+                    <div class="slide fade">
+                        <img src="assets/crete_beaches.jpg" alt="Beautiful beaches of Crete">
+                        <div class="slide-caption">Crystal clear waters waiting for us</div>
+                    </div>
+                    
+                    <div class="slide fade">
+                        <img src="assets/crete_blue_homes.jpg" alt="Colorful streets of Chania">
+                        <div class="slide-caption">Charming streets of Chania</div>
+                    </div>
+                    
+                    <div class="slide fade">
+                        <img src="assets/crete_lazurn_whater.jpg" alt="Crystal clear waters of Crete">
+                        <div class="slide-caption">Breathtaking views of the Aegean</div>
+                    </div>
+                    
+                    <div class="slide fade">
+                        <img src="assets/crete_lndscape.jpg" alt="Landscape of Crete">
+                        <div class="slide-caption">The magical landscapes of Crete</div>
+                    </div>
+                    
+                    <div class="slide fade">
+                        <img src="assets/create_city_night.jpg" alt="City night view of Crete">
+                        <div class="slide-caption">Magical evenings under the stars</div>
+                    </div>
+                </div>
+                
+                <!-- Navigation dots -->
+                <div class="slideshow-dots">
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
+                    <span class="dot" onclick="currentSlide(4)"></span>
+                    <span class="dot" onclick="currentSlide(5)"></span>
+                    <span class="dot" onclick="currentSlide(6)"></span>
+                </div>
+                
+                <!-- Navigation arrows -->
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="container">
+            <h2 class="section-heading">🗺️ Our Destination</h2>
+            <p class="map-description">Explore the beautiful island of Crete, where adventure and relaxation await us.</p>
+            
+            <div class="tabs">
+                <button class="tab-btn active" onclick="openTab('overview-map')">Island Overview</button>
+                <button class="tab-btn" onclick="openTab('locations-map')">Our Special Places</button>
+            </div>
+            
+            <div id="overview-map" class="tab-content active">
+                <div class="map-container">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d823599.9027484948!2d23.91656001228025!3d35.240355037920726!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x149afe2f827d98b1%3A0x100bd2ce2b9c630!2sCrete%2C%20Greece!5e0!3m2!1sen!2sus!4v1655481645548!5m2!1sen!2sus" 
+                        width="100%" 
+                        height="450" 
+                        style="border:0; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+            
+            <div id="locations-map" class="tab-content">
+                <div class="map-container">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m76!1m12!1m3!1d417242.2930733928!2d23.844249951076523!3d35.30908991637225!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m61!3e0!4m5!1s0x149a5733ca8d873f%3A0xa002c58cb34238f8!2sChania%2C%20Greece!3m2!1d35.5138298!2d24.0180367!4m5!1s0x149a599c3c91aa9d%3A0x400bd2ce2b9b7c0!2sBajos%20Lagoon%2C%20Greece!3m2!1d35.584987!2d23.5880319!4m5!1s0x149a7d86cd8d7df1%3A0x50f39e6a290f2fcd!2sFalassarna%2C%20Greece!3m2!1d35.4876007!2d23.5781053!4m5!1s0x149af9f.4e4e4f05f%3A0x8b87e1c2788e0ae8!2sKnossos%20Palace%2C%20Heraklion%2C%20Greece!3m2!1d35.2981947!2d25.1621071!4m5!1s0x149a9cd5c793dc35%3A0x3db32e23c2fec681!2sArchanes%2C%20Greece!3m2!1d35.2353545!2d25.1570075!4m5!1s0x149b35454e553a0d%3A0x17f2f5153f058272!2sElafonissi%20Beach%2C%20Greece!3m2!1d35.2719124!2d23.5414214!4m5!1s0x149a1135adb29419%3A0x400bd2ce2b9c280!2sRethymno%2C%20Greece!3m2!1d35.3644648!2d24.4821619!4m5!1s0x149a034f263a8e3f%3A0x400bd2ce2b98c80!2sOld%20Venetian%20Harbor%2C%20Chania%2C%20Greece!3m2!1d35.519581!2d24.0176365!4m5!1s0x149a1a16032fae7b%3A0x1a34c5b5888fe66e!2sPlakias%20Beach%2C%20Greece!3m2!1d35.1894661!2d24.3953588!4m5!1s0x149a6203c95d67a9%3A0xee0cae6c0229a701!2sAgia%20Pelagia%2C%20Greece!3m2!1d35.4072701!2d25.0175221!5e0!3m2!1sen!2sus!4v1627214891234!5m2!1sen!2sus"
+                        width="100%" 
+                        height="450" 
+                        style="border:0; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+                
+                <div class="location-cards">
+                    <div class="location-card">
+                        <h3>🏖️ Balos Lagoon</h3>
+                        <p>Crystal clear turquoise waters and white sand beach that feels like paradise.</p>
+                    </div>
+                    <div class="location-card">
+                        <h3>🌅 Falassarna</h3>
+                        <p>Famous for its stunning sunsets and beautiful sandy beach.</p>
+                    </div>
+                    <div class="location-card">
+                        <h3>🏛️ Knossos Palace</h3>
+                        <p>Ancient ruins of the Minoan civilization with incredible history.</p>
+                    </div>
+                    <div class="location-card">
+                        <h3>🍷 Archanes</h3>
+                        <p>Picturesque village known for its excellent wine and vineyards.</p>
+                    </div>
+                    <div class="location-card">
+                        <h3>🌸 Elafonissi</h3>
+                        <p>Famous for its pink sand beaches and shallow turquoise waters.</p>
+                    </div>
+                    <div class="location-card">
+                        <h3>🏙️ Chania Old Town</h3>
+                        <p>Charming Venetian harbor with colorful buildings and narrow streets.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Packing List Section -->
+    <section class="packing-list-section">
+        <div class="container">
+            <h2 class="section-heading">🧳 Packing List</h2>
+            <p class="packing-description">Let's make sure we don't forget anything important for our adventure!</p>
+            
+            <div class="packing-container">
+                <div class="packing-input-group">
+                    <input type="text" id="packingItem" placeholder="Add item to pack...">
+                    <select id="packingCategory">
+                        <option value="essentials">Essentials</option>
+                        <option value="clothes">Clothes</option>
+                        <option value="beach">Beach Items</option>
+                        <option value="tech">Tech & Gadgets</option>
+                        <option value="misc">Miscellaneous</option>
+                    </select>
+                    <button id="addPackingItem">Add Item</button>
+                </div>
+                
+                <div class="packing-categories">
+                    <div id="essentials" class="packing-category">
+                        <h3>✅ Essentials</h3>
+                        <ul class="packing-list" id="essentials-list">
+                            <li>
+                                <input type="checkbox" id="item-1">
+                                <label for="item-1">Passport</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="item-2">
+                                <label for="item-2">Flight Tickets</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="item-3">
+                                <label for="item-3">Credit Cards</label>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div id="clothes" class="packing-category">
+                        <h3>👕 Clothes</h3>
+                        <ul class="packing-list" id="clothes-list">
+                            <li>
+                                <input type="checkbox" id="item-4">
+                                <label for="item-4">Swimwear</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="item-5">
+                                <label for="item-5">Summer Dresses</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="item-6">
+                                <label for="item-6">Light Jacket</label>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div id="beach" class="packing-category">
+                        <h3>🏖️ Beach Items</h3>
+                        <ul class="packing-list" id="beach-list">
+                            <li>
+                                <input type="checkbox" id="item-7">
+                                <label for="item-7">Sunscreen</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="item-8">
+                                <label for="item-8">Beach Towel</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="item-9">
+                                <label for="item-9">Sunglasses</label>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div id="tech" class="packing-category">
+                        <h3>📱 Tech & Gadgets</h3>
+                        <ul class="packing-list" id="tech-list">
+                            <li>
+                                <input type="checkbox" id="item-10">
+                                <label for="item-10">Camera</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="item-11">
+                                <label for="item-11">Phone Charger</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="item-12">
+                                <label for="item-12">Power Adapter</label>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div id="misc" class="packing-category">
+                        <h3>🎒 Miscellaneous</h3>
+                        <ul class="packing-list" id="misc-list">
+                            <li>
+                                <input type="checkbox" id="item-13">
+                                <label for="item-13">Book/E-reader</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="item-14">
+                                <label for="item-14">First Aid Kit</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="item-15">
+                                <label for="item-15">Travel Journal</label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="packing-progress">
+                    <h4>Packing Progress</h4>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" id="packingProgressBar"></div>
+                    </div>
+                    <p id="packingProgressText">0% packed</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Personalized Message Section -->
+    <section class="message-section">
+        <div class="container">
+            <div class="message-card">
+                <h2 class="message-title">A Message From My Heart</h2>
+                <div class="message-content">
+                    <p>My dearest love,</p>
+                    <p>On your special day, I wanted to give you something that captures the essence of what you mean to me - adventure, beauty, and unforgettable moments together.</p>
+                    <p>Crete is waiting for us with its crystal-clear waters, ancient history, and sunsets that seem painted just for the two of us. I can't wait to explore its hidden beaches, share local delicacies, and create memories that will last a lifetime.</p>
+                    <p>Your smile lights up my world every day, and I hope this trip brings you as much joy as you bring to my life.</p>
+                    <p>Happy Birthday to the most amazing woman I know. I love you more than words can express.</p>
+                    <p class="message-signature">Forever yours,<br>Your husband 💙</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Gift Section -->
+    <section class="gift">
+        <div class="container">
+            <div class="gift-container">
+                <h2 class="section-heading">💌 A Gift for the Adventure</h2>
+                <p>Because every adventure needs a little fund to make it perfect.</p>
+                <button id="sendGift">Send $1000 💖</button>
+                <p id="giftStatus"></p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>With all my love, <strong>Your husband 💙</strong></p>
+        </div>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Audio player functionality
+            const audioPlayer = document.getElementById('bgMusic');
+            const toggleAudioBtn = document.getElementById('toggleAudio');
+            
+            toggleAudioBtn.addEventListener('click', function() {
+                if (audioPlayer.paused) {
+                    audioPlayer.play();
+                    toggleAudioBtn.textContent = 'Pause Music';
+                    toggleAudioBtn.classList.add('playing');
+                } else {
+                    audioPlayer.pause();
+                    toggleAudioBtn.textContent = 'Play Music';
+                    toggleAudioBtn.classList.remove('playing');
+                }
+            });
+            
+            // Update button text when audio is played/paused using controls
+            audioPlayer.addEventListener('play', function() {
+                toggleAudioBtn.textContent = 'Pause Music';
+                toggleAudioBtn.classList.add('playing');
+            });
+            
+            audioPlayer.addEventListener('pause', function() {
+                toggleAudioBtn.textContent = 'Play Music';
+                toggleAudioBtn.classList.remove('playing');
+            });
+        });
+        
+        document.getElementById('sendGift').addEventListener('click', () => {
+            document.getElementById('giftStatus').textContent = '✅ $1000 sent – adventure funded!';
+            document.getElementById('sendGift').disabled = true;
+        });
+        
+        // Notes Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const notesList = document.getElementById('notesList');
+            const noteInput = document.getElementById('noteInput');
+            const addNoteBtn = document.getElementById('addNoteBtn');
+            
+            // Load saved notes
+            loadNotes();
+            
+            // Add note event
+            addNoteBtn.addEventListener('click', function() {
+                addNote();
+            });
+            
+            // Enter key to submit
+            noteInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' && e.ctrlKey) {
+                    addNote();
+                }
+            });
+            
+            // Function to add a note
+            function addNote() {
+                const noteText = noteInput.value.trim();
+                if (!noteText) return;
+                
+                // Create new note object
+                const note = {
+                    id: Date.now(),
+                    text: noteText,
+                    date: new Date().toLocaleString()
+                };
+                
+                // Add to the list and save
+                createNoteElement(note);
+                saveNote(note);
+                
+                // Clear the input
+                noteInput.value = '';
+                noteInput.focus();
+            }
+            
+            // Function to create note element
+            function createNoteElement(note) {
+                const noteItem = document.createElement('div');
+                noteItem.className = 'note-item';
+                noteItem.id = `note-${note.id}`;
+                
+                const noteContent = document.createElement('div');
+                noteContent.className = 'note-text';
+                noteContent.textContent = note.text;
+                
+                const noteDate = document.createElement('div');
+                noteDate.className = 'note-date';
+                noteDate.textContent = note.date;
+                
+                const deleteBtn = document.createElement('button');
+                deleteBtn.className = 'delete-note';
+                deleteBtn.innerHTML = '&times;';
+                deleteBtn.title = 'Delete note';
+                deleteBtn.addEventListener('click', function() {
+                    deleteNote(note.id);
+                });
+                
+                noteItem.appendChild(noteContent);
+                noteItem.appendChild(noteDate);
+                noteItem.appendChild(deleteBtn);
+                
+                // Add to the beginning of the list
+                notesList.insertBefore(noteItem, notesList.firstChild);
+            }
+            
+            // Function to save note to localStorage
+            function saveNote(note) {
+                const notes = getSavedNotes();
+                notes.push(note);
+                localStorage.setItem('cretrTrip_notes', JSON.stringify(notes));
+            }
+            
+            // Function to get saved notes
+            function getSavedNotes() {
+                const notes = localStorage.getItem('cretrTrip_notes');
+                return notes ? JSON.parse(notes) : [];
+            }
+            
+            // Function to load notes
+            function loadNotes() {
+                const notes = getSavedNotes();
+                notes.forEach(note => {
+                    createNoteElement(note);
+                });
+            }
+            
+            // Function to delete note
+            function deleteNote(id) {
+                const noteElement = document.getElementById(`note-${id}`);
+                
+                // Fade out animation
+                noteElement.style.opacity = '0';
+                noteElement.style.transform = 'translateX(30px)';
+                noteElement.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                
+                setTimeout(() => {
+                    // Remove from DOM
+                    notesList.removeChild(noteElement);
+                    
+                    // Remove from localStorage
+                    const notes = getSavedNotes().filter(note => note.id !== id);
+                    localStorage.setItem('cretrTrip_notes', JSON.stringify(notes));
+                }, 300);
+            }
+        });
+        
+        // Slideshow Functionality
+        let slideIndex = 1;
+        let slideshowInterval;
+        
+        // Wait for DOM content to be loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            showSlides(slideIndex);
+            startSlideshow();
+            
+            // Pause slideshow on hover
+            const slideshowContainer = document.querySelector('.slideshow-container');
+            
+            if (slideshowContainer) {
+                slideshowContainer.addEventListener('mouseenter', function() {
+                    clearInterval(slideshowInterval);
+                });
+                
+                slideshowContainer.addEventListener('mouseleave', function() {
+                    startSlideshow();
+                });
+            }
+        });
+        
+        // Start automatic slideshow
+        function startSlideshow() {
+            clearInterval(slideshowInterval);
+            slideshowInterval = setInterval(function() {
+                plusSlides(1);
+            }, 5000); // Change slide every 5 seconds
+        }
+        
+        // Next/previous controls
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+        
+        // Thumbnail image controls
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+        
+        function showSlides(n) {
+            let i;
+            let slides = document.querySelectorAll('.slide');
+            let dots = document.querySelectorAll('.dot');
+            
+            if (!slides.length) return;
+            
+            if (n > slides.length) {slideIndex = 1}
+            if (n < 1) {slideIndex = slides.length}
+            
+            // Hide all slides
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            
+            // Remove active class from all dots
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active-dot", "");
+            }
+            
+            // Show the current slide
+            slides[slideIndex-1].style.display = "block";
+            
+            // Add active class to the current dot
+            dots[slideIndex-1].className += " active-dot";
+        }
+        
+        // Tab functionality for map section
+        function openTab(tabName) {
+            const tabContents = document.getElementsByClassName("tab-content");
+            const tabButtons = document.getElementsByClassName("tab-btn");
+            
+            // Hide all tab contents
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove("active");
+            }
+            
+            // Remove active class from all tab buttons
+            for (let i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove("active");
+            }
+            
+            // Show the selected tab content
+            document.getElementById(tabName).classList.add("active");
+            
+            // Add active class to the clicked button
+            const activeButton = Array.from(tabButtons).find(btn => {
+                return btn.getAttribute("onclick").includes(tabName);
+            });
+            
+            if (activeButton) {
+                activeButton.classList.add("active");
+            }
+        }
+        
+        // Countdown Timer
+        const countdownDate = new Date("August 15, 2025 00:00:00").getTime();
+        
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = countdownDate - now;
+            
+            // If the countdown date is in the past, show zeros
+            if (distance < 0) {
+                document.getElementById("days").innerHTML = "00";
+                document.getElementById("hours").innerHTML = "00";
+                document.getElementById("minutes").innerHTML = "00";
+                document.getElementById("seconds").innerHTML = "00";
+                return;
+            }
+            
+            // Time calculations
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            // Display the result
+            document.getElementById("days").innerHTML = days < 10 ? "0" + days : days;
+            document.getElementById("hours").innerHTML = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerHTML = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").innerHTML = seconds < 10 ? "0" + seconds : seconds;
+        }
+        
+        // Initial call to set values immediately
+        updateCountdown();
+        
+        // Update every second
+        setInterval(updateCountdown, 1000);
+
+        // Packing list functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Audio player functionality
+            const audioPlayer = document.getElementById('bgMusic');
+            const toggleAudioBtn = document.getElementById('toggleAudio');
+            
+            // existing audio player code...
+            
+            // Packing list functionality
+            const packingItem = document.getElementById('packingItem');
+            const packingCategory = document.getElementById('packingCategory');
+            const addPackingItemBtn = document.getElementById('addPackingItem');
+            const packingProgressBar = document.getElementById('packingProgressBar');
+            const packingProgressText = document.getElementById('packingProgressText');
+            
+            // Load saved packing items
+            loadPackingItems();
+            updatePackingProgress();
+            
+            // Add event listener to the Add Item button
+            addPackingItemBtn.addEventListener('click', function() {
+                addPackingItem();
+            });
+            
+            // Add event listener for Enter key
+            packingItem.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    addPackingItem();
+                }
+            });
+            
+            // Add event listeners to checkboxes
+            document.querySelectorAll('.packing-list input[type="checkbox"]').forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    updatePackingProgress();
+                    savePackingItems();
+                });
+            });
+            
+            function addPackingItem() {
+                const itemText = packingItem.value.trim();
+                const category = packingCategory.value;
+                
+                if (!itemText) return;
+                
+                // Create new item ID
+                const itemId = 'item-' + new Date().getTime();
+                
+                // Create new list item
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <input type="checkbox" id="${itemId}">
+                    <label for="${itemId}">${itemText}</label>
+                `;
+                
+                // Add to corresponding category list
+                const categoryList = document.getElementById(`${category}-list`);
+                categoryList.appendChild(li);
+                
+                // Add event listener to the new checkbox
+                const newCheckbox = li.querySelector('input[type="checkbox"]');
+                newCheckbox.addEventListener('change', function() {
+                    updatePackingProgress();
+                    savePackingItems();
+                });
+                
+                // Clear input field
+                packingItem.value = '';
+                packingItem.focus();
+                
+                // Save to localStorage and update progress
+                savePackingItems();
+                updatePackingProgress();
+            }
+            
+            function updatePackingProgress() {
+                const totalCheckboxes = document.querySelectorAll('.packing-list input[type="checkbox"]').length;
+                const checkedCheckboxes = document.querySelectorAll('.packing-list input[type="checkbox"]:checked').length;
+                
+                if (totalCheckboxes === 0) {
+                    packingProgressBar.style.width = '0%';
+                    packingProgressText.textContent = '0% packed';
+                    return;
+                }
+                
+                const progressPercentage = Math.round((checkedCheckboxes / totalCheckboxes) * 100);
+                
+                packingProgressBar.style.width = progressPercentage + '%';
+                packingProgressText.textContent = `${progressPercentage}% packed`;
+            }
+            
+            function savePackingItems() {
+                const packingData = {};
+                
+                // For each category, save items and their checked status
+                document.querySelectorAll('.packing-category').forEach(category => {
+                    const categoryId = category.id;
+                    packingData[categoryId] = [];
+                    
+                    category.querySelectorAll('.packing-list li').forEach(item => {
+                        const checkbox = item.querySelector('input[type="checkbox"]');
+                        const label = item.querySelector('label');
+                        
+                        packingData[categoryId].push({
+                            id: checkbox.id,
+                            text: label.textContent,
+                            checked: checkbox.checked
+                        });
+                    });
+                });
+                
+                localStorage.setItem('creteTrip_packingList', JSON.stringify(packingData));
+            }
+            
+            function loadPackingItems() {
+                const packingData = localStorage.getItem('creteTrip_packingList');
+                
+                if (!packingData) return;
+                
+                const parsedData = JSON.parse(packingData);
+                
+                // Clear existing default items
+                document.querySelectorAll('.packing-list').forEach(list => {
+                    list.innerHTML = '';
+                });
+                
+                // Load saved items
+                Object.keys(parsedData).forEach(categoryId => {
+                    const categoryList = document.getElementById(`${categoryId}-list`);
+                    
+                    parsedData[categoryId].forEach(item => {
+                        const li = document.createElement('li');
+                        li.innerHTML = `
+                            <input type="checkbox" id="${item.id}" ${item.checked ? 'checked' : ''}>
+                            <label for="${item.id}">${item.text}</label>
+                        `;
+                        
+                        categoryList.appendChild(li);
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html> 
